@@ -25,7 +25,7 @@ def find_prime_loop():
     prime_count = 0
     start_time = time.perf_counter()
     while 1:
-        n = random.randrange(3, 1122004669633, 2)
+        n = random.randrange(3, 18446744073709551616, 2)
         if miller_rabin(n):
             print_prime(n)
             prime_count += 1
@@ -36,7 +36,7 @@ def find_prime_loop():
 
 
 # test to see if n is prime
-# only need to run on small set of bases for "small" primes
+# only need to run on small set of bases for "small" primes which in this case is less than 2^64: 18446744073709551616
 def miller_rabin(n):
     if n == 2 or n == 3:
         return True
@@ -56,6 +56,16 @@ def miller_rabin(n):
         return (miller_rabin_inner(2, n) & miller_rabin_inner(7, n) & miller_rabin_inner(61, n))
     if n <= 1122004669633:
         return (miller_rabin_inner(2, n) & miller_rabin_inner(13, n) & miller_rabin_inner(23, n) & miller_rabin_inner(1662803, n))
+    if n <= 2152302898747:
+        return (miller_rabin_inner(2, n) & miller_rabin_inner(3, n) & miller_rabin_inner(5, n) & miller_rabin_inner(7, n) & miller_rabin_inner(11, n))
+    if n <= 3474749660383:
+        return (miller_rabin_inner(2, n) & miller_rabin_inner(3, n) & miller_rabin_inner(5, n) & miller_rabin_inner(7, n) & miller_rabin_inner(11, n) & miller_rabin_inner(13, n))
+    if n <= 341550071728321:
+        return (miller_rabin_inner(2, n) & miller_rabin_inner(3, n) & miller_rabin_inner(5, n) & miller_rabin_inner(7, n) & miller_rabin_inner(11, n) & miller_rabin_inner(13, n) & miller_rabin_inner(17, n))
+    if n <= 3825123056546413051:
+        return (miller_rabin_inner(2, n) & miller_rabin_inner(3, n) & miller_rabin_inner(5, n) & miller_rabin_inner(7, n) & miller_rabin_inner(11, n) & miller_rabin_inner(13, n) & miller_rabin_inner(17, n) & miller_rabin_inner(19, n) & miller_rabin_inner(23, n))
+    if n <= 18446744073709551616:
+        return (miller_rabin_inner(2, n) & miller_rabin_inner(3, n) & miller_rabin_inner(5, n) & miller_rabin_inner(7, n) & miller_rabin_inner(11, n) & miller_rabin_inner(13, n) & miller_rabin_inner(17, n) & miller_rabin_inner(19, n) & miller_rabin_inner(23, n)& miller_rabin_inner(29, n)& miller_rabin_inner(31, n)& miller_rabin_inner(37, n))
 
 # run miller_rabin on n for base a
 def miller_rabin_inner(a, n):
